@@ -34,7 +34,7 @@ export default function Current() {
                 <div className="col-3">
                   <img
                     src="https://i.pinimg.com/originals/53/22/c2/5322c2cad533e12e552d0dfdc89b4c25.png"
-                    alt=""
+                    alt="weather icon"
                     className="curr-icon"
                     id="curr-icon"
                   />
@@ -52,7 +52,7 @@ export default function Current() {
 
                   <span className="curr-temp-unit">
                     <a
-                      href=""
+                      href="#top"
                       id="celsius-link"
                       class="active"
                       rel="noreferrer"
@@ -60,7 +60,7 @@ export default function Current() {
                       ⁰C
                     </a>{" "}
                     |
-                    <a href="#" id="fahrenheit-link">
+                    <a href="#top" id="fahrenheit-link">
                       ⁰F
                     </a>
                   </span>
