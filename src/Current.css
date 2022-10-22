@@ -1,3 +1,14 @@
+h1 {
+  color: #1a64d6;
+  font-size: 68px;
+  font-weight: 800px;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: lighter;
+}
+
 li {
   font-weight: 400;
   list-style-type: none;

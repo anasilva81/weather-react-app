@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import CurrentDate from "./CurrentDate";
+
 import "./Current.css";
-import SearchBar from "./SearchBar";
+
 import axios from "axios";
 
 export default function Current(props) {
   const [weatherData, setWeatherData] = useState({ loaded: false });
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     console.log(response.data);
@@ -13,7 +15,6 @@ export default function Current(props) {
       loaded: true,
       city: response.data.city,
       date: new Date(response.data.time * 1000),
-      hour: "16:03",
       currTemperature: response.data.temperature.current,
       humidity: response.data.temperature.humidity,
       wind: response.data.wind.speed,
@@ -22,6 +23,24 @@ export default function Current(props) {
       //temperatureMin: response.data.daily[0].temp.min,
       //temperatureMax: response.data.daily[0].temp.max,
     });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
+  function search() {
+    const apiKey = "91b1f0t782317c69da4ae1170bo049f3";
+    let units = "metric";
+
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
+
+    axios.get(apiUrl).then(handleResponse);
   }
 
   if (weatherData.loaded) {
@@ -34,10 +53,20 @@ export default function Current(props) {
               <h3>
                 <CurrentDate date={weatherData.date} />
               </h3>
-              <h3>{weatherData.hour}</h3>
             </div>
             <div className="col-6">
-              <SearchBar />
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="search"
+                  placeholder="Insert city"
+                  className="search-input"
+                  onChange={handleCityChange}
+                />
+                <input type="submit" value="Search" />
+                <button className="reset-btn" id="reset-btn">
+                  Current
+                </button>
+              </form>
             </div>
             <p>
               <div className="w-100"></div>
@@ -109,13 +138,7 @@ export default function Current(props) {
       </div>
     );
   } else {
-    const apiKey = "91b1f0t782317c69da4ae1170bo049f3";
-    let units = "metric";
-
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=${units}`;
-
-    axios.get(apiUrl).then(handleResponse);
-
+    search();
     return "Loading...";
   }
 }
