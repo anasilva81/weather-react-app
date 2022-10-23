@@ -1,10 +1,10 @@
-h1 {
+.col-6 h1 {
   color: #1a64d6;
   font-size: 68px;
   font-weight: 800px;
 }
 
-h3 {
+.col-6 h3 {
   font-size: 24px;
   font-weight: lighter;
 }
@@ -34,8 +34,8 @@ li {
 
 .curr-icon {
   text-align: center;
-  height: 90px;
-  width: 90px;
+  height: 120px;
+  width: 120px;
   margin-left: 20px;
 }
 

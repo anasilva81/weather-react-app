@@ -1,0 +1,12 @@
+.UnitConversion .curr-temp {
+  font-size: 48px;
+  text-align: left;
+  right: 45px;
+}
+
+.UnitConversion .curr-temp a {
+  display: flex;
+  position: relative;
+  top: -30px;
+  left: 45px;
+}

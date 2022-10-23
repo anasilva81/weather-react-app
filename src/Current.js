@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CurrentDate from "./CurrentDate";
+import UnitConversion from "./UnitConversion";
 
 import "./Current.css";
 
@@ -87,24 +88,10 @@ export default function Current(props) {
 
                   <div className="col-2">
                     <h4>Current</h4>
-                    <span className="curr-temp" id="current-temperature">
-                      {Math.round(weatherData.currTemperature)}
-                    </span>
 
-                    <span className="curr-temp-unit">
-                      <a
-                        href="#top"
-                        id="celsius-link"
-                        class="active"
-                        rel="noreferrer"
-                      >
-                        ⁰C
-                      </a>{" "}
-                      |
-                      <a href="#top" id="fahrenheit-link">
-                        ⁰F
-                      </a>
-                    </span>
+                    <UnitConversion celsius={weatherData.currTemperature} />
+
+                    <span className="curr-temp-unit"></span>
                     <p className="curr-extremes">
                       <span className="curr-min-temp" id="curr-min-temp">
                         15
