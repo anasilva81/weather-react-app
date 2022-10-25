@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CurrentDate from "./CurrentDate";
 import UnitConversion from "./UnitConversion";
-
+import WeatherForecast from "./WeatherForecast";
 import "./Current.css";
 
 import axios from "axios";
@@ -14,6 +14,7 @@ export default function Current(props) {
     console.log(response.data);
     setWeatherData({
       loaded: true,
+      coordinates: response.data.coordinates,
       city: response.data.city,
       date: new Date(response.data.time * 1000),
       currTemperature: response.data.temperature.current,
@@ -21,8 +22,8 @@ export default function Current(props) {
       wind: response.data.wind.speed,
       description: response.data.condition.description,
       icon: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`,
-      //temperatureMin: response.data.daily[0].temp.min,
-      //temperatureMax: response.data.daily[0].temp.max,
+      //temperatureMin: response.data.daily[0].temperature.minimum,
+      //temperatureMax: response.data.daily[0].temperature.maximum,
     });
   }
 
@@ -94,11 +95,11 @@ export default function Current(props) {
                     <span className="curr-temp-unit"></span>
                     <p className="curr-extremes">
                       <span className="curr-min-temp" id="curr-min-temp">
-                        15
+                        {weatherData.temperatureMin}
                       </span>
                       ⁰
                       <span className="curr-max-temp" id="curr-max-temp">
-                        22
+                        {weatherData.temperatureMax}
                       </span>
                       ⁰
                     </p>
@@ -122,6 +123,7 @@ export default function Current(props) {
             </p>
           </div>
         </div>
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {

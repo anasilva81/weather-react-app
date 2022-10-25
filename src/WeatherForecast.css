@@ -1,0 +1,21 @@
+.card {
+  background-color: rgba(235, 243, 247, 0.6);
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 5px;
+  padding: 20px 0;
+  border-radius: 10px;
+  box-shadow: 10px 5px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.WeatherForecast {
+  text-align: center;
+}
+
+.WeatherForecast-temperature-min {
+  opacity: 0.6;
+}
+
+.WeatherForecast-temperature-max {
+  margin-left: 5px;
+}
