@@ -1,0 +1,9 @@
+.WeatherForecast-day {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.WeatherDescription {
+  font-size: 14px;
+  text-transform: capitalize;
+}
