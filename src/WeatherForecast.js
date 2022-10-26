@@ -19,7 +19,7 @@ export default function WeatherForecast(props) {
         <div className="WeatherForecast">
           <div className="row">
             <div className="col">
-              <WeatherForecastDay data={forecast[1]} />;
+              <WeatherForecastDay data={forecast[1]} />
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@ export default function WeatherForecast(props) {
     let units = "metric";
     let longitude = props.coordinates.longitude;
     let latitude = props.coordinates.latitude;
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${latitude}&lon=-${longitude}&key=${apiKey}&units=${units}`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=${units}`;
 
     axios.get(apiUrl).then(handleResponse);
 
