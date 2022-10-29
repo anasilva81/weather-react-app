@@ -54,7 +54,9 @@ export default function Current(props) {
     axios.get(apiUrl).then(handleResponse);
   }
 
-  function currentLocation() {
+  function currentLocation(event) {
+    event.preventDefault();
+
     navigator.geolocation.getCurrentPosition(showLocation);
   }
 
@@ -78,7 +80,7 @@ export default function Current(props) {
                   onChange={handleCityChange}
                 />
                 <input type="submit" value="Search" />
-                <button className="reset-btn" onClick={currentLocation}>
+                <button onClick={currentLocation} className="reset-btn">
                   Current
                 </button>
               </form>
