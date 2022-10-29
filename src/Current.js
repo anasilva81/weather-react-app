@@ -11,7 +11,7 @@ export default function Current(props) {
   const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
-    console.log(response.data);
+    //console.log(response.data);
     setWeatherData({
       loaded: true,
       coordinates: response.data.coordinates,
@@ -22,8 +22,6 @@ export default function Current(props) {
       wind: response.data.wind.speed,
       description: response.data.condition.description,
       icon: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`,
-      //temperatureMin: response.data.daily[0].temperature.minimum,
-      //temperatureMax: response.data.daily[0].temperature.maximum,
     });
   }
 
@@ -43,6 +41,21 @@ export default function Current(props) {
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
 
     axios.get(apiUrl).then(handleResponse);
+  }
+
+  function showLocation(position) {
+    let latitude = position.coordinates.latitude;
+    let longitude = position.coordinates.longitude;
+    const apiKey = "91b1f0t782317c69da4ae1170bo049f3";
+    let units = "metric";
+
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=${units}`;
+
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function currentLocation() {
+    navigator.geolocation.getCurrentPosition(showLocation);
   }
 
   if (weatherData.loaded) {
@@ -65,7 +78,7 @@ export default function Current(props) {
                   onChange={handleCityChange}
                 />
                 <input type="submit" value="Search" />
-                <button className="reset-btn" id="reset-btn">
+                <button className="reset-btn" onClick={currentLocation}>
                   Current
                 </button>
               </form>
@@ -93,16 +106,6 @@ export default function Current(props) {
                     <UnitConversion celsius={weatherData.currTemperature} />
 
                     <span className="curr-temp-unit"></span>
-                    <p className="curr-extremes">
-                      <span className="curr-min-temp" id="curr-min-temp">
-                        {weatherData.temperatureMin}
-                      </span>
-                      ⁰
-                      <span className="curr-max-temp" id="curr-max-temp">
-                        {weatherData.temperatureMax}
-                      </span>
-                      ⁰
-                    </p>
                   </div>
 
                   <div className="col-3">
