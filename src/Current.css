@@ -71,10 +71,7 @@ li {
   bottom: -25px;
 }
 
-.curr-min-temp {
-  opacity: 0.7;
-}
-
-.curr-max-temp {
-  font-size: 20px;
+.search {
+  margin-left: 5px;
+  border-radius: 5px;
 }

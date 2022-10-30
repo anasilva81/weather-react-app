@@ -43,23 +43,6 @@ export default function Current(props) {
     axios.get(apiUrl).then(handleResponse);
   }
 
-  function showLocation(position) {
-    let latitude = position.coordinates.latitude;
-    let longitude = position.coordinates.longitude;
-    const apiKey = "91b1f0t782317c69da4ae1170bo049f3";
-    let units = "metric";
-
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=${units}`;
-
-    axios.get(apiUrl).then(handleResponse);
-  }
-
-  function currentLocation(event) {
-    event.preventDefault();
-
-    navigator.geolocation.getCurrentPosition(showLocation);
-  }
-
   if (weatherData.loaded) {
     return (
       <div className="container">
@@ -79,10 +62,7 @@ export default function Current(props) {
                   className="search-input"
                   onChange={handleCityChange}
                 />
-                <input type="submit" value="Search" />
-                <button onClick={currentLocation} className="reset-btn">
-                  Current
-                </button>
+                <input type="submit" value="Search" className="search" />
               </form>
             </div>
             <p>
